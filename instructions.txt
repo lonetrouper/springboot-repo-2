@@ -1,0 +1,13 @@
+mysql-client is keg-only, which means it was not symlinked into /usr/local,
+because it conflicts with mysql (which contains client libraries).
+
+If you need to have mysql-client first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/mysql-client/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find mysql-client you may need to set:
+  export LDFLAGS="-L/usr/local/opt/mysql-client/lib"
+  export CPPFLAGS="-I/usr/local/opt/mysql-client/include"
+
+local docker mysql setup : 
+
+docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root-password -v /Users/prtsh/Documents/docker-configurations/mysql-storage:/var/lib/mysql mysql
